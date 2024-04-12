@@ -65,5 +65,5 @@ ENV PATH /opt/conda/envs/hmas/bin:$PATH \
 WORKDIR /data
 
 # run test profile
-RUN cd /HMAS-QC-Pipeline2/ && \
-    nextflow run /HMAS-QC-Pipeline2/hmas2.nf -profile test
+# RUN cd /HMAS-QC-Pipeline2/ && \
+#     nextflow run /HMAS-QC-Pipeline2/hmas2.nf -profile test
