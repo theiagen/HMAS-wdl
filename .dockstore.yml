@@ -1,0 +1,7 @@
+version: 1.2
+workflows:
+ - name: HMAS-QC-Pipeline2
+   subclass: WDL
+   primaryDescriptorPath: /workflows/hmas.wdl
+   testParameterFiles:
+    - empty.json
