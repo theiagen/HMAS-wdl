@@ -4,4 +4,4 @@ workflows:
    subclass: WDL
    primaryDescriptorPath: /workflows/hmas.wdl
    testParameterFiles:
-    - empty.json
+    - /tests/inputs/empty.json
