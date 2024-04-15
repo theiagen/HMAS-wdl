@@ -16,11 +16,14 @@ task hmas {
     read1_array=(~{sep=' ' read1})
     read2_array=(~{sep=' ' read2})
 
+    echo "Read1 files: ${read1_array[@]}"
+    echo "Read2 files: ${read2_array[@]}"
+
     # move read files to new directory
     mkdir reads
     for i in ${!read1_array[@]}; do
-      mv ${read1_array[$i]} reads/
-      mv ${read2_array[$i]} reads/
+      cp ${read1_array[$i]} reads/
+      cp ${read2_array[$i]} reads/
     done
 
     # copy HMAS-QC-Pipeline2 to current directory
