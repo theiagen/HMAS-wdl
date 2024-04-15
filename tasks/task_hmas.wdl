@@ -7,8 +7,8 @@ task hmas {
     File primers
     String docker="us-docker.pkg.dev/general-theiagen/internal/hmas:1.0.0"
     Int memory = 32
-    Int cpu = 4
-    Int disk_size = 200
+    Int cpu = 12
+    Int disk_size = 500
   }
   command <<<
     date | tee DATE
