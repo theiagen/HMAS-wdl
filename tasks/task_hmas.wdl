@@ -37,6 +37,9 @@ task hmas {
     String hmas_docker = docker
     String analysis_date = read_string("DATE")
     File hmas_report = "OUT/report.csv"
+    Array[File] hmas_clean_read1 = glob("OUT/*/temp/*.1.fastq")
+    Array[File] hmas_clean_read2 = glob("OUT/*/temp/*.2.fastq")
+    Array[File] hmas_consensus_fasta = glob("OUT/*/*final.unique.fasta")
   }
   runtime {
     docker: "~{docker}"

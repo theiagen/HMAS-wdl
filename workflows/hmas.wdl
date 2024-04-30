@@ -19,6 +19,9 @@ workflow hmas_wf {
   }
   output {
     File hmas_report = hmas.hmas_report
+    Array[File] hmas_clean_read1 = hmas.hmas_clean_read1
+    Array[File] hmas_clean_read2 = hmas.hmas_clean_read2
+    Array[File] hmas_consensus_fasta = hmas.hmas_consensus_fasta
     String hmas_docker = hmas.hmas_docker
     String analysis_date = hmas.analysis_date
   }
