@@ -5,3 +5,8 @@ workflows:
    primaryDescriptorPath: /workflows/hmas.wdl
    testParameterFiles:
     - /tests/inputs/empty.json
+ - name: HMAS-Mixed-Sites
+   subclass: WDL
+   primaryDescriptorPath: /workflows/mix_sites.wdl
+   testParameterFiles:
+    - /tests/inputs/empty.json
