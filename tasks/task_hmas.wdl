@@ -6,7 +6,7 @@ task hmas {
     Array[File] read2
     File primers
     String docker="us-docker.pkg.dev/general-theiagen/internal/hmas:1.2.0"
-    Int memory = 18
+    Int memory = 24
     Int cpu = 8
     Int disk_size = 100
   }
