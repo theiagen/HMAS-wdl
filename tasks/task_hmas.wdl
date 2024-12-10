@@ -5,10 +5,10 @@ task hmas {
     Array[File] read1
     Array[File] read2
     File primers
-    String docker="us-docker.pkg.dev/general-theiagen/internal/hmas:1.0.0"
-    Int memory = 32
-    Int cpu = 12
-    Int disk_size = 500
+    String docker="us-docker.pkg.dev/general-theiagen/internal/hmas:1.2.0"
+    Int memory = 24
+    Int cpu = 8
+    Int disk_size = 100
   }
   command <<<
     date | tee DATE
@@ -30,16 +30,16 @@ task hmas {
     cp -r /HMAS-QC-Pipeline2/* ./
 
     # Run nextflow
-    nextflow run hmas2.nf --outdir OUT --reads reads --primer ~{primers}
+    nextflow run hmas2.nf --outdir OUT --reads reads --primer ~{primers} 
 
   >>>
   output {
     String hmas_docker = docker
     String analysis_date = read_string("DATE")
     File hmas_report = "OUT/report.csv"
-    Array[File] hmas_clean_read1 = glob("OUT/*/temp/*.1.fastq")
-    Array[File] hmas_clean_read2 = glob("OUT/*/temp/*.2.fastq")
-    Array[File] hmas_consensus_fasta = glob("OUT/*/*final.unique.fasta")
+    File hmas_multiqc_html = "OUT/multiqc_report.html"
+    File hmas_mqc_yaml = "OUT/report_mqc.yaml"
+    Array[File] hmas_final_fasta = glob("OUT/*/*final.unique.fasta")
   }
   runtime {
     docker: "~{docker}"

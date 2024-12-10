@@ -9,8 +9,7 @@ WORKDIR /
 
 # Version arguments
 # ARG variables only persist during build time
-# using latest release from 2023/06/20
-ARG HMAS_VERSION="1.0.0"
+ARG HMAS_VERSION="1.2.0"
 ARG HMAS_SRC_URL=https://github.com/ncezid-biome/HMAS-QC-Pipeline2/archive/refs/tags/v${HMAS_VERSION}.zip
 
 # metadata labels
@@ -53,6 +52,8 @@ RUN mamba create -y --name hmas -c conda-forge -c bioconda -c defaults \
     cutadapt=3.5 \
     pear \
     vsearch=2.22.1 \
+    multiqc=1.21 \
+    fastqc=0.12.1 \
     nextflow=22.10.6 && \
     mamba clean -a -y
 
