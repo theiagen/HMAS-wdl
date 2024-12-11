@@ -60,10 +60,19 @@ RUN mamba create -y --name hmas -c conda-forge -c bioconda -c defaults \
     biopython=1.84 && \
     mamba clean -a -y
 
-# set locale settings to UTF-8
-# set the environment, put new hmas conda env in PATH by default
-ENV PATH /opt/conda/envs/hmas/bin:$PATH \
-    LC_ALL=C.UTF-8
+# activate the conda environment
+RUN conda init bash
+
+RUN echo "conda activate hmas" >> ~/.bashrc
+
+# Set up conda environment
+ENV CONDA_PREFIX=/opt/conda/envs/hmas
+ENV PATH=$CONDA_PREFIX/bin:$PATH
+
+# Set utf-8 encoding
+ENV LC_ALL=C.UTF-8
 
 # set final working directory to /data
 WORKDIR /data
+
+SHELL ["/bin/bash", "-c"] 
