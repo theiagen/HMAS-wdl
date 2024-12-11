@@ -9,7 +9,7 @@ WORKDIR /
 
 # Version arguments
 # ARG variables only persist during build time
-ARG HMAS_VERSION="1.2.0"
+ARG HMAS_VERSION="1.2.1"
 ARG HMAS_SRC_URL=https://github.com/ncezid-biome/HMAS-QC-Pipeline2/archive/refs/tags/v${HMAS_VERSION}.zip
 
 # metadata labels
@@ -21,7 +21,9 @@ LABEL description="A WDL wrapper around ncezid-biome/HMAS-QC-Pipeline2 for Terra
 LABEL website="https://github.com/ncezid-biome/HMAS-QC-Pipeline2"
 LABEL license="https://github.com/ncezid-biome/HMAS-QC-Pipeline2/blob/sample_base/LICENSE"
 LABEL maintainer1="Inês Mendes"
+LABEL maintainer2="Michal Babinski"
 LABEL maintainer.email1="ines.mendes@theiagen.com"
+LABEL maintainer.email2="michal.babinski@theiagen.com"
 
 # install base dependencies; cleanup apt garbage
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -49,12 +51,13 @@ RUN ls /HMAS-QC-Pipeline2/bin/
 RUN mamba create -y --name hmas -c conda-forge -c bioconda -c defaults \
     python=3.9 \
     pandas=1.5.3 \
-    cutadapt=3.5 \
+    cutadapt=4.8 \
     pear \
     vsearch=2.22.1 \
     multiqc=1.21 \
     fastqc=0.12.1 \
-    nextflow=22.10.6 && \
+    nextflow=22.10.6 \
+    biopython=1.84 && \
     mamba clean -a -y
 
 # set locale settings to UTF-8
@@ -64,7 +67,3 @@ ENV PATH /opt/conda/envs/hmas/bin:$PATH \
 
 # set final working directory to /data
 WORKDIR /data
-
-# run test profile
-# RUN cd /HMAS-QC-Pipeline2/ && \
-#     nextflow run /HMAS-QC-Pipeline2/hmas2.nf -profile test
